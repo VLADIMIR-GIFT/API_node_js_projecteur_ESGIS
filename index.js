@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const db = require("./config/db"); // Importation de la connexion à la base de données
+const sequelize = require("./config/db"); // Importation de la connexion à la base de données
 
 const userRoutes = require("./routes/users");
 const projectorRoutes = require("./routes/projectors");
@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
 });
 
 // Vérification de la connexion à la base de données
-db.authenticate()
+sequelize.authenticate()
     .then(() => console.log("🟢 Connexion à la base de données réussie"))
     .catch(err => console.error("🔴 Erreur de connexion à la base de données :", err));
 

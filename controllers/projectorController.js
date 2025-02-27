@@ -25,3 +25,35 @@ exports.ajouterProjecteur = (req, res) => {
             res.status(500).json({ message: "Erreur lors de l'ajout du projecteur", error });
         });
 };
+
+// Ici j'ai ajouté deux fonctions : modifier et supprimer un projecteur
+
+
+// Fonction pour modifier un projecteur
+exports.modifierProjecteur = async (req, res) => {
+  const { nom, etat, disponibilite } = req.body;
+  try {
+    const projector = await Projector.findByPk(req.params.id);
+    if (!projector) {
+      return res.status(404).json({ message: "Projecteur non trouvé" });
+    }
+    await projector.update({ nom, etat, disponibilite });
+    res.json({ message: "Projecteur mis à jour avec succès" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Fonction pour supprimer un projecteur
+exports.supprimerProjecteur = async (req, res) => {
+  try {
+    const projector = await Projector.findByPk(req.params.id);
+    if (!projector) {
+      return res.status(404).json({ message: "Projecteur non trouvé" });
+    }
+    await projector.destroy();
+    res.json({ message: "Projecteur supprimé avec succès" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
