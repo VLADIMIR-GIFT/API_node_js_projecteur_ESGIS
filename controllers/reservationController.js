@@ -1,4 +1,3 @@
-// controllers/reservationController.js
 const Reservation = require("../Models/reservationModel");
 
 // Ajouter une réservation

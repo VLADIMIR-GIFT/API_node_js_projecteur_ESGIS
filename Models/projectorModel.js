@@ -1,6 +1,5 @@
 const { Sequelize, DataTypes } = require("sequelize");
-const sequelize = require("../config/db"); // Vérifie si ce fichier existe
-
+const sequelize = require("../config/db"); 
 const Projector = sequelize.define("Projector", {
     id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
     nom: { type: DataTypes.STRING, allowNull: false },
